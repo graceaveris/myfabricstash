@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_13_100511) do
+ActiveRecord::Schema.define(version: 2018_08_14_055207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,14 +25,30 @@ ActiveRecord::Schema.define(version: 2018_08_13_100511) do
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
+  create_table "fabrics", force: :cascade do |t|
+    t.text "fabric_name"
+    t.text "fabric_description"
+    t.string "purchased_from"
+    t.float "meterage"
+    t.text "fibre", default: [], array: true
+    t.text "colour", default: [], array: true
+    t.text "suitable_for", default: [], array: true
+    t.boolean "printed"
+    t.string "image"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_fabrics_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    # t.string "provider" NOT ACTUALLY HERE, LEFTOVER FROM FAILED FB ADD
-    # t.string "uid" NOT ACTUALLY HERE, LEFTOVER FROM FAILED FB ADD
+    t.string "provider"
+    t.string "uid"
   end
 
   add_foreign_key "authentications", "users"

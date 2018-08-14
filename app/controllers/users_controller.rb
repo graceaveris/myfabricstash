@@ -22,6 +22,10 @@ class UsersController < ApplicationController
   def show
     current_user
     @user = User.find(params[:id])
+    #as we are using a modal, the details for the form need to be passed in via this show method!
+    @fibres = ["Silk", "Cotton", "Linen"]
+    @suitable_for = ["Pants", "Skirt", "Shirt"]
+    @colours = ["Red", "Blue", "Orange"]
   end
 
 end

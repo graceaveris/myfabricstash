@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy', as: "sign_out"
 
+  #fabrics paths
+  get "/fabrics/new" => "fabrics#new", as: "new_fabrics" #This serves the form for a new listing
+  post "/fabrics/new" => "fabrics#create" #This creates the listing upon submit of form
+
   #AUTH ROUTES // DONT TOUCH
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 end
