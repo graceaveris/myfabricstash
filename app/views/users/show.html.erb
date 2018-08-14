@@ -1,8 +1,113 @@
 </br></br><p>USER PAGE PLAN</p></br>
  </br><p><%= "Welcome, #{@current_user.username}" %></p>
 
-<p>Add fabric button</p></br>
 
-<p>Search and filter bar</p></br>
 
-<p>Fabric Collection objects (each can be popped out as a model)</p>
+<!-- MODEL FOR UPLOAD FABRIC -->
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Add Fabric to collection
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Fabric</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     
+
+
+<!-- Form to add fabric -->
+<%= form_with scope: :fabrics, url: new_fabrics_path, local: true do |form| %>
+    <p>
+      <%= form.label :fabric_name %><br>
+  	  <%= form.text_field :fabric_name %>
+  	</p>
+
+    <p>
+      <%= form.label :fabric_description %><br>
+  	  <%= form.text_field :fabric_description %>
+  	</p>
+
+     <p>
+      <%= form.label :purchased_from %><br>
+  	  <%= form.text_field :purchased_from %>
+  	</p>
+
+     <p>
+      <%= form.label :meterage %><br>
+  	  <%= form.select :meterage, (0..500) %>
+  	</p>
+
+     <p>
+    	<%= form.label :select_fibres %><br>
+		<%@fibres.each do |fibre|%>
+		    <%= form.label fibre %>
+			<%= form.check_box :fibre, {multiple: true}, fibre.to_s, nil %></br>
+			</p>		
+		<% end %>
+	</p>
+
+	<p>
+    	<%= form.label :main_fabric_colours %><br>
+		<%@colours.each do |colour|%>
+		    <%= form.label colour %>
+			<%= form.check_box :colour, {multiple: true}, colour.to_s, nil %></br>
+			</p>		
+		<% end %>
+	</p>
+
+	<p>
+    	<%= form.label :suitable_for %><br>
+		<%@suitable_for.each do |item|%>
+		    <%= form.label item %>
+			<%= form.check_box :suitable_for, {multiple: true}, item.to_s, nil %></br>
+			</p>		
+		<% end %>
+	</p>
+
+    <p>
+        <%= form.label :printed? %><br>
+        <%= form.check_box :printed %><br>
+  	</p>
+	
+	<p>
+	  <%= form.submit "Add Fabric" %>
+	</p>
+    
+<% end %> 
+<!-- Form to add fabric -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add Fabric</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODEL FOR UPLOAD FABRIC -->
+
+
+</br></br><p>Search and filter bar</p></br>
+
+
+<!-- SHOW FABRIC COLLECTION -->
+<h4>YOUR COLLECTION</h4>
+
+
+<!-- SHOW FABRIC COLLECTION -->
+
+
+
+
