@@ -1,2 +1,14 @@
-<h1>HELLO</h1>
-<p>HELLO</p>
+
+<div class="container">
+
+    <% if @current_user %>
+ 
+  </br><p><%= "Welcome, #{@current_user.username}" %></p>
+    
+    <% else %>
+
+  </br><p>Welcome to MyFabricStash, an online inventory system to track your fabric collection.</p>
+
+  <% end %>
+
+  </div>

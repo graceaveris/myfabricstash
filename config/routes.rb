@@ -3,12 +3,15 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   #users paths
-  get '/signup' => 'users#new'
+  get '/signup' => 'users#new', as: "sign_up"
   post '/users' => 'users#create'
+  get "/users/:id" => "users#show", as: "user"
 
   #sessions paths
-  get '/login' => 'sessions#new'
+  get '/login' => 'sessions#new', as: "sign_in"
   post '/login' => 'sessions#create'
-  get '/logou’' => 'sessions#destroy'
+  delete '/logout' => 'sessions#destroy', as: "sign_out"
 
+  #AUTH ROUTES // DONT TOUCH
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 end
