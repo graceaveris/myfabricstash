@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 	 if user && user.authenticate(params[:password])
 	  session[:user_id] = user.id
 	  flash[:success] = 'Successfully Logged In!'
-	  redirect_to root_path
+	  redirect_to user_path
 	 else
 	  flash[:warning] = 'Invalid Username or Password'
 	  redirect_to '/login'
@@ -19,6 +19,29 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     flash[:success] = 'Successfully Logged Out!'
     redirect_to '/login'
+  end
+
+  def create_from_omniauth
+    auth_hash = request.env["omniauth.auth"]
+    authentication = Authentication.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"]) ||  Authentication.create_with_omniauth(auth_hash)
+
+    # if: previously already logged in with OAuth
+    if authentication.user
+      user = authentication.user
+      authentication.update_token(auth_hash)
+      @next = user_path(user)
+      @notice = "Signed in!"
+    # else: user logs in with OAuth for the first time
+    else
+      user = User.create_with_auth_and_hash(authentication, auth_hash)
+      # you are expected to have a path that leads to a page for editing user details
+      # @next = edit_user_path(user) - this is what was here, for now I just use the root path
+      @next = user_path(user)
+      @notice = "User created"
+    end
+
+    session[:user_id] = user.id
+    redirect_to @next, :notice => @notice
   end
 
 end

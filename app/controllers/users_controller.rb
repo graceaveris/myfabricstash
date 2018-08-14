@@ -12,10 +12,16 @@ class UsersController < ApplicationController
   	if user.save
   		session[:user_id] = user.id
   		flash[:success] = "You're all signed up!"
-  		redirect_to root_path
+  		redirect_to user_path(user)
   	else
   		flash[:warning] = "invalid email or password"
-  		redirect_to "signup"
+  		redirect_to "/signup"
   	end
   end
+
+  def show
+    current_user
+    @user = User.find(params[:id])
+  end
+
 end

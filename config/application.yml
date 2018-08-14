@@ -9,3 +9,6 @@
 # production:
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+
+GOOGLE_APP_ID: '628269750051-h5tu94tr9lj4tlsv313bfone8prik6ek.apps.googleusercontent.com'  
+GOOGLE_APP_SECRET: 'ogTn3YsOzwsX_69GyESL3bjc'
