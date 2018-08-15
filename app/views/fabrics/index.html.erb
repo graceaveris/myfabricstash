@@ -1,12 +1,10 @@
 
- </br><p><%= "ACCOUNT PAGE: #{@current_user.username}" %></p>
-
 
 <!-- MODEL FOR UPLOAD FABRIC -->
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+</br><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Add Fabric to collection
 </button>
 
@@ -93,14 +91,27 @@
       </div>
     </div>
   </div>
-</div>
+</div></br></br>
 
 <!-- MODEL FOR UPLOAD FABRIC -->
 
 
-</br></br><p>Filter Bar</p></br>
 
-</br></br><p>Ajax Search</p></br>
+<!-- FILTER BAR -->
+      <%= form_with scope: :filter, url: filter_fabrics_path, local: true do |form| %>
+        <p>
+          <%= form.label :Printed?%>
+          <%= form.check_box :printed%>
+        </p>
+
+        <p>
+        <%= form.select(:Colour, ['Blue', 'Yellow', 'Purple', 'Green'], {:prompt => "Select Colour"})%>
+          <%= form.submit "Filter Results" %>
+        </p>
+
+      <% end %> 
+<!-- FILTER BAR -->
+
 
 
 <!-- SHOW FABRIC COLLECTION -->

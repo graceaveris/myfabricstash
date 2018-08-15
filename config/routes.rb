@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy', as: "sign_out"
 
   #fabrics paths
+  get "/fabrics/collection" => "fabrics#index"
+  post "/fabrics/filter" => "fabrics#filter", as: "filter_fabrics"
+
   get "/fabrics/new" => "fabrics#new", as: "new_fabrics" #This serves the form for a new listing
   post "/fabrics/new" => "fabrics#create" #This creates the listing upon submit of form
 

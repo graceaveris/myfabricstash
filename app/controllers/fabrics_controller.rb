@@ -6,6 +6,21 @@ class FabricsController < ApplicationController
   end
 
   def index
+    @fabrics = Fabric.where(["user_id = ?", current_user.id])
+    #for add fabric modal
+    @fibres = ["Silk", "Cotton", "Linen", "Wool", "Merino", "Modal", "Bamboo", "Cashmere", "Polyester", "Acetate", "Nylon", "Lurex"]
+    @suitable_for = ["Pants", "Skirt", "Shirt", "Dress", "T-Shirt", "Shorts", "Activewear", "Sweater", "Jacket", "Coat", "Swimwear"]
+    @colours = ["Red", "Blue", "Orange", "Yellow", "Green", "Purple", "Black", "Grey", "Brown", "Pink", "Metallic"]
+  end
+
+   def filter
+    @fabrics = Fabric.print_scope(params[:filter][:printed])
+    @filtered = true
+    #for add fabric modal
+    @fibres = ["Silk", "Cotton", "Linen", "Wool", "Merino", "Modal", "Bamboo", "Cashmere", "Polyester", "Acetate", "Nylon", "Lurex"]
+    @suitable_for = ["Pants", "Skirt", "Shirt", "Dress", "T-Shirt", "Shorts", "Activewear", "Sweater", "Jacket", "Coat", "Swimwear"]
+    @colours = ["Red", "Blue", "Orange", "Yellow", "Green", "Purple", "Black", "Grey", "Brown", "Pink", "Metallic"]
+    render 'index'
   end
 
   def create 
