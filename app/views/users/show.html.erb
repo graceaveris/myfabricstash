@@ -1,6 +1,5 @@
-</br></br><p>USER PAGE PLAN</p></br>
- </br><p><%= "Welcome, #{@current_user.username}" %></p>
 
+ </br><p><%= "Welcome, #{@current_user.username}" %></p>
 
 
 <!-- MODEL FOR UPLOAD FABRIC -->
@@ -99,11 +98,13 @@
 <!-- MODEL FOR UPLOAD FABRIC -->
 
 
-</br></br><p>Search and filter bar</p></br>
+</br></br><p>Filter Bar</p></br>
+
+</br></br><p>Ajax Search</p></br>
 
 
 <!-- SHOW FABRIC COLLECTION -->
-<h4>YOUR COLLECTION</h4>
+<h4> YOUR FABRIC COLLECTION</h4></br>
 
 
 <div class="card-deck">
@@ -116,10 +117,35 @@
 		    <div class="card-body">
 		      <h5 class="card-title"><%= fabric.fabric_name%></h5>
 		      <p class="card-text"><%= fabric.fabric_description%></p>
-		      <p class="card-text"><small class="text-muted"><%="Composition: #{fabric.fibre}"%></small></p>
-		      <p class="card-text"><small class="text-muted"><%="Colours: #{fabric.colour}"%></small></p>
-		      <p class="card-text"><small class="text-muted"><%="Suitable For: #{fabric.suitable_for}"%></small></p>
-		      <p class="card-text"><small class="text-muted"><%="Meterage: #{fabric.meterage}"%></small></p>
+
+
+<!--               Listing fibre types -->
+		      <p class="card-text"><small class="text-muted">Composition: 
+				      	
+				      	<%= fabric.fibre.each do |fibre| %>
+				      		<%=fibre %>
+				      	<%end%>
+			  </small></p>
+
+
+<!--               Listing colours -->
+		      <p class="card-text"><small class="text-muted">Colours: 
+				      	
+				      	<%= fabric.colour.each do |colour| %>
+				      		<%=colour %>
+				      	<%end%>
+			  </small></p>
+
+
+<!--               Listing suitable for -->
+		      <p class="card-text"><small class="text-muted">Suitable For: 
+				      	
+				      	<%= fabric.suitable_for.each do |item| %>
+				      		<%=item %>
+				      	<%end%>
+			  </small></p>
+
+
 		    </div>
 		  </div>
         </div>
@@ -127,7 +153,5 @@
     <% end %>
 
 </div>
-
-
 
 

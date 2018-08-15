@@ -1,5 +1,5 @@
 
-1.times do 
+20.times do 
   fabric = {}
   fabric['fabric_name'] = ["Fire-engine textured silk", "Blue and pink polka dot", "Lavender linen", "Vintage mustard sweatshirting", "Liberty wool suiting", "Forest green coating"].sample 
   fabric['fabric_description'] = Faker::FamousLastWords.last_words
