@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 	has_many :authentications, dependent: :destroy
-	has_secure_password
+  has_many :fabrics, dependent: :destroy
+	has_secure_password 
   validates_uniqueness_of :email
 
 
