@@ -61,6 +61,7 @@ class FabricsController < ApplicationController
   end
 
   def show
+    @fabric = Fabric.find(params[:id])
   end
 
 end
