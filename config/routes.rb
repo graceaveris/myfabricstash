@@ -26,3 +26,4 @@ Rails.application.routes.draw do
   #meetup routes
   get "/meetup" => "meetup#index", as: "index_events"
 end
+

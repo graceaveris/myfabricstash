@@ -5,3 +5,4 @@ class MeetupController < ApplicationController
     # render json: @events
   end
 end
+

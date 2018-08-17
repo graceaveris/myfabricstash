@@ -8,3 +8,4 @@ class Fabric < ApplicationRecord
 end
 
 
+
