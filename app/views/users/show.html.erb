@@ -1,14 +1,73 @@
 
- </br><p><%= "ACCOUNT PAGE: #{@current_user.username}" %></p>
+</br></br><h3><%= "Welcome #{@current_user.username}" %></h3>
+<p><%= "You have #{@current_user.fabrics.count} fabrics in your collection!" %></p></br></br>
+
+<% if @user.username? %> 
+<p>HELLO</p>
+
+<% else %> 
+<p>WAHST</p>
+
+<% end %> 
 
 
-<!-- MODEL FOR UPLOAD FABRIC -->
+<!-- SHOW LATEST FABRICS -->
+<h5> YOUR LATEST FABRICS ADDED</h5></br>
 
 
+<div class="card-deck">
+
+    <% @fabrics.each do |fabric| %>
+        
+        <div class="col-sm-6 col-md-4 col-lg-3">
+		  <div class="card" style="width: 18rem;">
+		    <img class="card-img-top" src="<%=fabric.image%>">
+		    <div class="card-body">
+		      <h5 class="card-title"><%= fabric.fabric_name%></h5>
+		      <p class="card-text"><%= fabric.fabric_description%></p>
+
+
+<!--               Listing fibre types -->
+		      <p class="card-text"><small class="text-muted">Composition: 
+				      	
+				      	<% fabric.fibre.each do |fibre| %>
+				      		<%=fibre %>
+				      	<%end%>
+			  </small></p>
+
+
+<!--               Listing colours -->
+		      <p class="card-text"><small class="text-muted">Colours: 
+				      	
+				      	<% fabric.colour.each do |colour| %>
+				      		<%=colour %>
+				      	<%end%>
+			  </small></p>
+
+
+<!--               Listing suitable for -->
+		      <p class="card-text"><small class="text-muted">Suitable For: 
+				      	
+				      	<% fabric.suitable_for.each do |item| %>
+				      		<%=item %>
+				      	<%end%>
+			  </small></p>
+
+
+		    </div>
+		  </div>
+        </div>
+
+    <% end %>
+
+
+<!-- View Full Collection -->
+</br></br>
+<%= button_to 'View Full Collection', "/fabrics/collection", class: "btn btn-primary", method: :get %>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
   Add Fabric to collection
-</button>
+</button></br>
 
 
 <!-- Modal -->
@@ -84,6 +143,7 @@
 	</p>
     
 <% end %> 
+
 <!-- Form to add fabric -->
 
       </div>
@@ -97,61 +157,5 @@
 
 <!-- MODEL FOR UPLOAD FABRIC -->
 
-
-</br></br><p>Filter Bar</p></br>
-
-</br></br><p>Ajax Search</p></br>
-
-
-<!-- SHOW FABRIC COLLECTION -->
-<h4> YOUR FABRIC COLLECTION</h4></br>
-
-
-<div class="card-deck">
-
-    <% @fabrics.each do |fabric| %>
-        
-        <div class="col-sm-6 col-md-4 col-lg-3">
-		  <div class="card" style="width: 18rem;">
-		    <img class="card-img-top" src="<%=fabric.image%>">
-		    <div class="card-body">
-		      <h5 class="card-title"><%= fabric.fabric_name%></h5>
-		      <p class="card-text"><%= fabric.fabric_description%></p>
-
-
-<!--               Listing fibre types -->
-		      <p class="card-text"><small class="text-muted">Composition: 
-				      	
-				      	<% fabric.fibre.each do |fibre| %>
-				      		<%=fibre %>
-				      	<%end%>
-			  </small></p>
-
-
-<!--               Listing colours -->
-		      <p class="card-text"><small class="text-muted">Colours: 
-				      	
-				      	<% fabric.colour.each do |colour| %>
-				      		<%=colour %>
-				      	<%end%>
-			  </small></p>
-
-
-<!--               Listing suitable for -->
-		      <p class="card-text"><small class="text-muted">Suitable For: 
-				      	
-				      	<% fabric.suitable_for.each do |item| %>
-				      		<%=item %>
-				      	<%end%>
-			  </small></p>
-
-
-		    </div>
-		  </div>
-        </div>
-
-    <% end %>
-
 </div>
-
 

@@ -1,5 +1,6 @@
 
 
+
 <!-- MODEL FOR UPLOAD FABRIC -->
 
 
@@ -28,60 +29,41 @@
     <p>
       <%= form.label :fabric_name %><br>
   	  <%= form.text_field :fabric_name %>
-  	</p>
 
-    <p>
       <%= form.label :fabric_description %><br>
   	  <%= form.text_field :fabric_description %>
-  	</p>
 
-     <p>
       <%= form.label :purchased_from %><br>
   	  <%= form.text_field :purchased_from %>
-  	</p>
 
-     <p>
       <%= form.label :meterage %><br>
   	  <%= form.select :meterage, (0..500) %>
-  	</p>
 
-     <p>
     	<%= form.label :select_fibres %><br>
 		<%@fibres.each do |fibre|%>
 		    <%= form.label fibre %>
 			<%= form.check_box :fibre, {multiple: true}, fibre.to_s, nil %></br>
-			</p>		
 		<% end %>
-	</p>
 
-	<p>
     	<%= form.label :main_fabric_colours %><br>
 		<%@colours.each do |colour|%>
 		    <%= form.label colour %>
-			<%= form.check_box :colour, {multiple: true}, colour.to_s, nil %></br>
-			</p>		
+			<%= form.check_box :colour, {multiple: true}, colour.to_s, nil %></br>			
 		<% end %>
-	</p>
 
-	<p>
     	<%= form.label :suitable_for %><br>
 		<%@suitable_for.each do |item|%>
 		    <%= form.label item %>
-			<%= form.check_box :suitable_for, {multiple: true}, item.to_s, nil %></br>
-			</p>		
+			<%= form.check_box :suitable_for, {multiple: true}, item.to_s, nil %></br>		
 		<% end %>
-	</p>
 
-    <p>
         <%= form.label :printed? %><br>
         <%= form.check_box :printed %><br>
-  	</p>
-	
-	<p>
+
 	  <%= form.submit "Add Fabric" %>
 	</p>
-    
-<% end %> 
+
+<% end %>  
 <!-- Form to add fabric -->
 
       </div>
@@ -95,29 +77,69 @@
 
 <!-- MODEL FOR UPLOAD FABRIC -->
 
-
-
-<!-- FILTER BAR -->
-      <%= form_with scope: :filter, url: filter_fabrics_path, local: true do |form| %>
-        <p>
-          <%= form.label :Printed?%>
-          <%= form.check_box :printed%>
-        </p>
-
-        <p>
-        <%= form.select(:Colour, ['Blue', 'Yellow', 'Purple', 'Green'], {:prompt => "Select Colour"})%>
-          <%= form.submit "Filter Results" %>
-        </p>
-
-      <% end %> 
 <!-- FILTER BAR -->
 
+<% if @filtered == true %>
+
+    <%= form_with scope: :filter, url: filter_fabrics_path, local: true do |form| %>
+        <p>
+        <%= form.select(:fibre, ['Silk', 'Linen', 'Cotton', 'Bamboo'], {:prompt => "Fibre Type"}) %>
+        <%= form.select(:colour, ['Blue', 'Yellow', 'Purple', 'Green'], {:prompt => "Select Colour"}) %>
+        <%= form.select(:suitable_for, ['Pants', 'Skit', 'Shirt', 'Skirt'], {:prompt => "Suitable For"}) %>
+        <%= form.submit "Filter Results" %> 
+        </p>
+    <% end %> 
+
+<% else %> 
+
+    <%= form_with scope: :filter, url: filter_fabrics_path, local: true do |form| %>
+        <p>
+        <%= form.select(:fibre, ['Silk', 'Linen', 'Cotton', 'Bamboo'], {:prompt => "Fibre Type"})%>
+        <%= form.select(:colour, ['Blue', 'Yellow', 'Purple', 'Green'], {:prompt => "Select Colour"})%>
+        <%= form.select(:suitable_for, ['Pants', 'Skit', 'Shirt', 'Skirt'], {:prompt => "Suitable For"})%>
+        <%= form.submit "Filter Results" %> 
+        </p>
+    <% end %>   
+
+<% end %> 
+<!-- FILTER BAR -->
+
+<!-- DISPLAYS CURRENTLY SELECTED FIELDS IF @FILTERED VIEW -->
+
+<p><% if @filtered == true %>
+
+    <% if @selected_fibre != "Fibre Type" %>
+       <%= "Filtering by Fibre: #{@selected_fibre} "%>
+    <% end %></br>  
+
+    <% if @selected_colour != "Select Colour" %>
+       <%= "Filtering by Colour: #{@selected_colour} "%>
+    <% end %></br>  
+
+    <% if @selected_suitable_for != "Suitable For" %>
+       <%= "Filtering by Project: #{@selected_suitable_for} "%></p>
+    <% end %></p>
+     
+
+ <%= link_to "Clear Filters", index_fabrics_path, class: "btn btn-primary btn-sm" %><br><br>
+<% end %>  
 
 
-<!-- SHOW FABRIC COLLECTION -->
-<h4> YOUR FABRIC COLLECTION</h4></br>
+<!-- SWITCHES STATEMENT BASED ON FILTERED YES/NO-->
+<% if @fabrics.length == 0 %>
+	<h4> NO SEARCH RESULTS (PROMOTE FABRICS THAT MATCH SEARCH FROM RETAILER) </h4></br>
+  <% else %>
+
+	<% if @filtered == true %>
+		<h4> OPTIONS FOR YOUR SEWING PROJECT</h4></br>
+	  <% else %>
+		<h4> YOUR FABRIC COLLECTION</h4></br>
+	<% end %>
+
+<% end %>
 
 
+<!-- SHOW FABRIC COLLECTION / FABRIC OPTIONS-->
 <div class="card-deck">
 
     <% @fabrics.each do |fabric| %>
@@ -128,6 +150,7 @@
 		    <div class="card-body">
 		      <h5 class="card-title"><%= fabric.fabric_name%></h5>
 		      <p class="card-text"><%= fabric.fabric_description%></p>
+		      <p class="card-text"><%= fabric.printed%></p>
 
 
 <!--               Listing fibre types -->

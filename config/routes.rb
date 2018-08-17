@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'meetup/index'
   #homepage path
   root 'welcome#index'
 
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy', as: "sign_out"
 
   #fabrics paths
-  get "/fabrics/collection" => "fabrics#index"
+  get "/fabrics/collection" => "fabrics#index", as: "index_fabrics"
   post "/fabrics/filter" => "fabrics#filter", as: "filter_fabrics"
 
   get "/fabrics/new" => "fabrics#new", as: "new_fabrics" #This serves the form for a new listing
@@ -21,4 +22,7 @@ Rails.application.routes.draw do
 
   #AUTH ROUTES // DONT TOUCH
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+
+  #meetup routes
+  get "/meetup" => "meetup#index", as: "index_events"
 end
