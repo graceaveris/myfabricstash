@@ -1,8 +1,66 @@
-</br></br><h1>Latest sewing events near you</h1></br></br>
+</br></br><h1>Upcoming sewing meetups from MyFabricStash</h1></br></br>
  
-<!--  WORKING!!! -->
 
-<p><%@events.each do |event|%>
-    <%= event['name'] %></br>
-	<%= event['link'] %></br></br>
-<% end %></p>
+
+
+<div class="card-deck">
+
+    <% @events.each do |event| %>
+    <% event['description'] = event['description'][3..100] + ' ...'%>
+        
+        <div class="col-sm-6 col-md-4 col-lg-3">
+		  <div class="card" style="width: 18rem;">
+		    <div class="card-body">
+		      <h5 class="card-title"><%= event['name'] %></h5>
+		      <p class="card-text"><%= event['local_date'] %></p>
+              <p class="card-text"><small class="text-muted">Event Details: <%= event['description'] %></small></br></br>
+             <a href="<%= event['link'] %>" class="btn btn-primary">View event on meetup</a>
+		    </div>
+		  </div>
+        </div>
+
+    <% end %>
+
+</div>
+
+<!-- JSON DATA TO PULL -->
+<!-- "created": 1515921615000,
+"duration": 1134000000,
+"id": "bldrfpyxlbdb",
+"name": "My Sewing Plans for August 2018",
+"status": "upcoming",
+"time": 1533841200000,
+"local_date": "2018-08-09",
+"local_time": "20:00",
+"updated": 1530602956000,
+"utc_offset": 3600000,
+"waitlist_count": 0,
+"yes_rsvp_count": 7,
+"venue": {
+"id": 25465016,
+"name": "This is a virtual event",
+"lat": 0.0,
+"lon": 0.0,
+"repinned": false,
+"address_1": "Please post a comment and/or photo to participate",
+"city": "London",
+"country": "gb",
+"localized_country_name": "United Kingdom"
+},
+"group": {
+"created": 1366321399000,
+"name": "The London Dressmakers Club",
+"id": 8125622,
+"join_mode": "open",
+"lat": 51.5,
+"lon": -0.10999999940395355,
+"urlname": "dressmakers",
+"who": "Dressmakers",
+"localized_location": "London, United Kingdom",
+"region": "en_US",
+"timezone": "Europe/London"
+},
+"link": "https://www.meetup.com/dressmakers/events/252392266/",
+"description": "<p>Let us know what you plan to do this month. Perhaps you feel, like me, that once you have put something down in black &amp; white you are more likely to go ahead and do it. Perhaps you want to ask for opinions on your plans or some advice on how to achieve them. Share your ideas with other sewists and then let us know how it went at the end of the month. We'd love you to post any photographs, maybe here of, for example, a pattern you want to make or a fabric you will be using.</p> ",
+"visibility": "public" -->
+

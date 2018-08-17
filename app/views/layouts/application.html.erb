@@ -24,6 +24,7 @@
   <body>
 
 
+
 <!--   BOOTSTRAP NAV -->
 <div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,10 +39,6 @@
     <% if @current_user %>
 
         <li class="nav-item">
-          <%= link_to 'Sign Out', sign_out_path, class: 'nav-item nav-link active', method: :delete %>
-        </li>
-
-        <li class="nav-item">
             <%= link_to 'Profile', user_path(@current_user), class: 'nav-item nav-link active' %>
         </li>
 
@@ -52,6 +49,11 @@
         <li class="nav-item">
             <%= link_to 'Sewing Events', index_events_path, class: 'nav-item nav-link active' %>
         </li>
+
+        <li class="nav-item">
+          <%= link_to 'Sign Out', sign_out_path, class: 'nav-item nav-link active', method: :delete %>
+        </li>
+
     
     <% else %>
 
