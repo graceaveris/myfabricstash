@@ -145,7 +145,7 @@
 
     <% @fabrics.each do |fabric| %>
       <tr>
-        <div class="col-sm-6 col-md-4 col-lg-3 fade-element">
+        <div class="col-sm-6 col-md-4 col-lg-3 id="fabric_<%=fabric.id%>">
 		  <div class="card" style="width: 18rem;">
 		    <img class="card-img-top" src="<%=fabric.image%>">
 		    <div class="card-body">
@@ -183,17 +183,24 @@
 <!--               Show page button -->
       <%= link_to "Full Details", show_fabrics_path(fabric), class: "btn btn-primary btn-sm" %>
 
-<!--              AJAX DELETE BUTTON IN PROGRESS-->
+<!--              AJAX DELETE BUTTON IN PROGRESS // NOT WORKING -->
 
-       <%= link_to "Delete Fabric", delete_fabric_path(fabric), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, :class => 'delete_fabric'%>
+       <%= link_to "Delete Fabric", delete_fabric_path(fabric), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'delete_fabric'%>
 
-<!--              AJAX DELETE BUTTON -->
+<!--              AJAX DELETE BUTTON // COULD NOT MAKE WORK... HAVE REMOVED REMOTE TRUE IN THE MEANTIME. COME BACK TO THIS: ( :remote => true )-->
 
 		    </div>
 		   </div>
       </div>
     </tr>
     <% end %>
+
+
+
+<!-- FLASH MESSAGE GENERATOR - IF FABRIC DELETED -->
+  <% if flash[:success] %>
+    <div class="success"><%= flash[:success] %></div>
+  <% end %>
 
 </div>
 
