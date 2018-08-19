@@ -9,14 +9,14 @@
 // });
 
 
-$('.delete_fabric').bind('ajax:success', function() {
-	console.log("#fabric_<%=params[:id]%>")
-   $("#fabric_<%=params[:id]%>").fadeOut();
-});
+// $('.delete_fabric').bind('ajax:success', function() {
+// 	console.log("#fabric_<%=params[:id]%>")
+//    $("#fabric_<%=params[:id]%>").fadeOut();
+// });
 
 
-// <%if flash[:success].present?%>
-//   $("#fabric_<%=params[:id]%>").fadeOut();
-//   // $("#fabric_<%=params[:id]%>").remove();
-// <%end%>
+<%if flash[:success].present?%>
+  $("#fabric_<%=params[:id]%>").fadeOut();
+  //$("#fabric_<%=params[:id]%>").remove();
+<%end%>
 

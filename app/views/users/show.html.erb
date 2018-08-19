@@ -2,14 +2,6 @@
 </br></br><h3><%= "Welcome #{@current_user.username}" %></h3>
 <p><%= "You have #{@current_user.fabrics.count} fabrics in your collection!" %></p></br></br>
 
-<% if @user.username? %> 
-<p>HELLO</p>
-
-<% else %> 
-<p>WAHST</p>
-
-<% end %> 
-
 
 <!-- SHOW LATEST FABRICS -->
 <h5> YOUR LATEST FABRICS ADDED</h5></br>
@@ -63,13 +55,13 @@
 
 
 <!-- View Full Collection -->
-</br></br>
-<%= button_to 'View Full Collection', "/fabrics/collection", class: "btn btn-primary", method: :get %>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
-  Add Fabric to collection
-</button></br>
-
+<div id="button-group">
+  </br></br>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+    Add Fabric to collection
+  </button></br>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
