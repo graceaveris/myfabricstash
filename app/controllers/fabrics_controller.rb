@@ -66,12 +66,10 @@ class FabricsController < ApplicationController
 
 def destroy
   @fabric = Fabric.find(params[:id])
-  byebug
   if @fabric.destroy
     flash[:success] = "Fabric deleted successfully!"
 
   end
-
   respond_to do |format|
     format.html { redirect_to index_fabrics_path }
     format.json { head :no_content }

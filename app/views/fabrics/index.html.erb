@@ -145,7 +145,7 @@
 
     <% @fabrics.each do |fabric| %>
       <tr>
-        <div class="col-sm-6 col-md-4 col-lg-3 id="fabric_<%=fabric.id%>">
+        <div class="col-sm-6 col-md-4 col-lg-3, id="fabric_<%=fabric.id%>">
 		  <div class="card" style="width: 18rem;">
 		    <img class="card-img-top" src="<%=fabric.image%>">
 		    <div class="card-body">
@@ -185,9 +185,9 @@
 
 <!--              AJAX DELETE BUTTON IN PROGRESS // NOT WORKING -->
 
-       <%= link_to "Delete Fabric", delete_fabric_path(fabric), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'delete_fabric'%>
+       <%= link_to "Delete Fabric", delete_fabric_path(fabric), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, :class => 'delete_fabric'%>
 
-<!--              AJAX DELETE BUTTON // COULD NOT MAKE WORK... HAVE REMOVED REMOTE TRUE IN THE MEANTIME. COME BACK TO THIS: ( :remote => true )-->
+<!--              AJAX DELETE BUTTON -->
 
 		    </div>
 		   </div>
