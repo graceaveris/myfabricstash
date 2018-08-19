@@ -64,6 +64,19 @@ class FabricsController < ApplicationController
     @fabric = Fabric.find(params[:id])
   end
 
+def destroy
+  @fabric = Fabric.find(params[:id])
+  byebug
+  if @fabric.destroy
+    flash[:success] = "Fabric deleted successfully!"
+
+  end
+
+  respond_to do |format|
+    format.html { redirect_to index_fabrics_path }
+    format.json { head :no_content }
+    format.js { render layout: false }
+  end
 end
 
 #PRIVATE METHOD TO VALIDATE THE NEW FABRIC FORM
@@ -71,3 +84,4 @@ end
   def fabric_params
     params.require(:fabrics).permit(:fabric_name, :fabric_description, :purchased_from, :meterage, :printed, {suitable_for: []}, {colour: []}, {fibre: []}) 
   end
+end

@@ -6,6 +6,3 @@ class Fabric < ApplicationRecord
     scope :suitable_for_scope, -> (suitable_for) { where(":suitable_for = ANY(suitable_for)", suitable_for: suitable_for ) }
     scope :with_fibre, -> (fibre) { where(":fibre = ANY(fibre)", fibre: fibre ) }
 end
-
-
-
