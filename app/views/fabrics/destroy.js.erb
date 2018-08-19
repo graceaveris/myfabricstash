@@ -1,0 +1,11 @@
+console.log('Binding event');
+$('.delete_fabric').bind('ajax:success', function() {
+  console.log('fading the element: ', $(this).closest('tr')); 
+  $(this).closest('tr').fadeOut();
+});
+
+
+// $('.delete_fabric').bind('ajax:success', function() {
+//    $(this).closest('tr').fadeOut();
+// });
+

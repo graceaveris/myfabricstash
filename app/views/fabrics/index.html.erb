@@ -144,8 +144,8 @@
 <div class="card-deck">
 
     <% @fabrics.each do |fabric| %>
-        
-        <div class="col-sm-6 col-md-4 col-lg-3">
+      <tr>
+        <div class="col-sm-6 col-md-4 col-lg-3 fade-element">
 		  <div class="card" style="width: 18rem;">
 		    <img class="card-img-top" src="<%=fabric.image%>">
 		    <div class="card-body">
@@ -179,19 +179,20 @@
 				      		<%=item %>
 				      	<%end%>
 			  </small></p>
+
 <!--               Show page button -->
       <%= link_to "Full Details", show_fabrics_path(fabric), class: "btn btn-primary btn-sm" %>
 
+<!--              AJAX DELETE BUTTON IN PROGRESS-->
+
+       <%= link_to "Delete Fabric", delete_fabric_path(fabric), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, :class => 'delete_fabric'%>
+
 <!--              AJAX DELETE BUTTON -->
 
-
-
-
-<!--              AJAX DELETE BUTTON -->
 		    </div>
 		   </div>
       </div>
-
+    </tr>
     <% end %>
 
 </div>
