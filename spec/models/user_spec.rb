@@ -22,3 +22,5 @@ RSpec.describe User, type: :model do
   end
 
 end
+
+#to run - $ bundle exec rspec
