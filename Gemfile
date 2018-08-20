@@ -2,7 +2,10 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
-
+#for testing
+gem 'rspec-given'
+#for testing
+gem 'rspec'
 #for deployment
 gem 'rails_12factor', group: :production
 #for connecting with meetup
