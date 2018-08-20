@@ -3,7 +3,7 @@
 
 <!-- MODEL FOR UPLOAD FABRIC -->
 
-
+<div id="addfabricbutton">
 <!-- Button trigger modal -->
 </br><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Add Fabric to collection
@@ -28,36 +28,36 @@
 <%= form_with scope: :fabrics, url: new_fabrics_path, local: true do |form| %>
     <p>
       <%= form.label :fabric_name %>
-  	  <%= form.text_field :fabric_name %>
+  	  <%= form.text_field :fabric_name %></br>
 
       <%= form.label :fabric_description %>
-  	  <%= form.text_field :fabric_description %>
+  	  <%= form.text_field :fabric_description %></br>
 
       <%= form.label :purchased_from %>
-  	  <%= form.text_field :purchased_from %>
+  	  <%= form.text_field :purchased_from %></br>
 
       <%= form.label :meterage %>
-  	  <%= form.select :meterage, (0..500) %>
+  	  <%= form.select :meterage, (0..500) %></br></br>
 
-    	<%= form.label :select_fibres %>
+    	<%= form.label "SELECT FIBRES" %></br>
 		<%@fibres.each do |fibre|%>
 		    <%= form.label fibre %>
-			<%= form.check_box :fibre, {multiple: true}, fibre.to_s, nil %></br>
-		<% end %>
+			<%= form.check_box :fibre, {multiple: true}, fibre.to_s, nil %>
+		<% end %></br></br>
 
-    	<%= form.label :main_fabric_colours %><br>
+    	<%= form.label "SELECT MAIN FABRIC COLOUR" %><br>
 		<%@colours.each do |colour|%>
 		    <%= form.label colour %>
-			<%= form.check_box :colour, {multiple: true}, colour.to_s, nil %></br>			
-		<% end %>
+			<%= form.check_box :colour, {multiple: true}, colour.to_s, nil %>		
+		<% end %></br></br>
 
-    	<%= form.label :suitable_for %><br>
+    	<%= form.label "SUITABLE FOR" %><br>
 		<%@suitable_for.each do |item|%>
 		    <%= form.label item %>
-			<%= form.check_box :suitable_for, {multiple: true}, item.to_s, nil %></br>		
-		<% end %>
+			<%= form.check_box :suitable_for, {multiple: true}, item.to_s, nil %>		
+		<% end %></br></br>
 
-        <%= form.label :printed? %><br>
+        <%= form.label "PRINTED?" %>
         <%= form.check_box :printed %><br>
 
 	  <%= form.submit "Add Fabric" %>
@@ -69,7 +69,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add Fabric</button>
       </div>
     </div>
   </div>
@@ -78,66 +77,74 @@
 
 <!-- MODEL FOR UPLOAD FABRIC -->
 
-<!-- FILTER BAR -->
-
-<% if @filtered == true %>
-
-    <%= form_with scope: :filter, url: filter_fabrics_path, local: true do |form| %>
-        <p>
-        <%= form.select(:fibre, ['Silk', 'Linen', 'Cotton', 'Bamboo'], {:prompt => "Fibre Type"}) %>
-        <%= form.select(:colour, ['Blue', 'Yellow', 'Purple', 'Green'], {:prompt => "Select Colour"}) %>
-        <%= form.select(:suitable_for, ['Pants', 'Skit', 'Shirt', 'Skirt'], {:prompt => "Suitable For"}) %>
-        <%= form.submit "Filter Results" %> 
-        </p>
-    <% end %> 
-
-<% else %> 
-
-    <%= form_with scope: :filter, url: filter_fabrics_path, local: true do |form| %>
-        <p>
-        <%= form.select(:fibre, ['Silk', 'Linen', 'Cotton', 'Bamboo'], {:prompt => "Fibre Type"})%>
-        <%= form.select(:colour, ['Blue', 'Yellow', 'Purple', 'Green'], {:prompt => "Select Colour"})%>
-        <%= form.select(:suitable_for, ['Pants', 'Skirt', 'Shirt', 'Activewear'], {:prompt => "Suitable For"})%>
-        <%= form.submit "Filter Results" %> 
-        </p>
-    <% end %>   
-
-<% end %> 
-<!-- FILTER BAR -->
-
-<!-- DISPLAYS CURRENTLY SELECTED FIELDS IF @FILTERED VIEW -->
-
-<p><% if @filtered == true %>
-
-    <% if @selected_fibre != "Fibre Type" %>
-       <%= "Filtering by Fibre: #{@selected_fibre} "%>
-    <% end %></br>  
-
-    <% if @selected_colour != "Select Colour" %>
-       <%= "Filtering by Colour: #{@selected_colour} "%>
-    <% end %></br>  
-
-    <% if @selected_suitable_for != "Suitable For" %>
-       <%= "Filtering by Project: #{@selected_suitable_for} "%></p>
-    <% end %></p>
-     
-
- <%= link_to "Clear Filters", index_fabrics_path, class: "btn btn-primary btn-sm" %><br><br>
-<% end %>  
+<div id="filter-section">
+  <!-- FILTER HEADER -->
+      <h5> Filter your Collection</h5>
+  <!-- FILTER HEADER -->
 
 
-<!-- SWITCHES STATEMENT BASED ON FILTERED YES/NO-->
-<% if @fabrics.length == 0 && @filtered == true%>
-	<h4> NO SEARCH RESULTS (PROMOTE FABRICS THAT MATCH SEARCH FROM RETAILER) </h4></br>
-  <% else %>
+  <!-- FILTER BAR -->
 
-	<% if @filtered == true %>
-		<h4> OPTIONS FOR YOUR SEWING PROJECT</h4></br>
-	  <% else %>
-		<h4> YOUR FABRIC COLLECTION</h4></br>
-	<% end %>
+  <% if @filtered == true %>
 
-<% end %>
+      <%= form_with scope: :filter, url: filter_fabrics_path, local: true do |form| %>
+          <p>
+          <%= form.select(:fibre, ['Silk', 'Linen', 'Cotton', 'Bamboo'], {:prompt => "Fibre Type"}) %>
+          <%= form.select(:colour, ['Blue', 'Yellow', 'Purple', 'Green'], {:prompt => "Select Colour"}) %>
+          <%= form.select(:suitable_for, ['Pants', 'Skit', 'Shirt', 'Skirt'], {:prompt => "Suitable For"}) %>
+          <%= form.submit "Filter Results" %> 
+          </p>
+      <% end %> 
+
+  <% else %> 
+
+      <%= form_with scope: :filter, url: filter_fabrics_path, local: true do |form| %>
+          <p>
+          <%= form.select(:fibre, ['Silk', 'Linen', 'Cotton', 'Bamboo'], {:prompt => "Fibre Type"})%>
+          <%= form.select(:colour, ['Blue', 'Yellow', 'Purple', 'Green'], {:prompt => "Select Colour"})%>
+          <%= form.select(:suitable_for, ['Pants', 'Skirt', 'Shirt', 'Activewear'], {:prompt => "Suitable For"})%>
+          <%= form.submit "Filter Results" %> 
+          </p>
+      <% end %>   
+
+  <% end %> 
+
+  <!-- FILTER BAR -->
+
+  <!-- DISPLAYS CURRENTLY SELECTED FIELDS IF @FILTERED VIEW -->
+  <div>
+  <p><% if @filtered == true %>
+
+      <% if @selected_fibre != "Fibre Type" %>
+         <%= "Filtering by Fibre: #{@selected_fibre} "%>
+      <% end %></br>  
+
+      <% if @selected_colour != "Select Colour" %>
+         <%= "Filtering by Colour: #{@selected_colour} "%>
+      <% end %></br>  
+
+      <% if @selected_suitable_for != "Suitable For" %>
+         <%= "Filtering by Project: #{@selected_suitable_for} "%></p>
+      <% end %></p>
+       
+
+   <%= link_to "Clear Filters", index_fabrics_path, class: "btn btn-primary btn-sm" %><br><br>
+  <% end %></br>
+
+
+  <!-- SWITCHES STATEMENT BASED ON FILTERED YES/NO-->
+  <% if @fabrics.length == 0 && @filtered == true%>
+  	<h4> NO SEARCH RESULTS (PROMOTE FABRICS THAT MATCH SEARCH FROM RETAILER) </h4></br>
+    <% else %>
+
+  	<% if @filtered == true %>
+  		<h4> OPTIONS FOR YOUR SEWING PROJECT</h4></br>
+  	  <% else %>
+  		<h4> YOUR FABRIC COLLECTION</h4></br>
+  	<% end %>
+
+  <% end %>
+<div>
 
 
 <!-- SHOW FABRIC COLLECTION / FABRIC OPTIONS-->
