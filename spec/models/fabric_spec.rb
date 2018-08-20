@@ -13,6 +13,18 @@ RSpec.describe Fabric, type: :model do
       expect(@fabric).to_not be_valid
     end
   end
+  
+  describe "association" do
+    it "should have a user" do
+      Fabric.reflect_on_association(:user).macro.should   eq(:belongs_to)
+   end
+  end
+
+    describe "fabric count" do
+      it "count number of fabrics belonging to a user" do
+      expect(@user.fabrics.length).to eq(1)
+    end
+  end
 
 end
 
