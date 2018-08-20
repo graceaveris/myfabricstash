@@ -27,19 +27,19 @@
 <!-- Form to add fabric -->
 <%= form_with scope: :fabrics, url: new_fabrics_path, local: true do |form| %>
     <p>
-      <%= form.label :fabric_name %><br>
+      <%= form.label :fabric_name %>
   	  <%= form.text_field :fabric_name %>
 
-      <%= form.label :fabric_description %><br>
+      <%= form.label :fabric_description %>
   	  <%= form.text_field :fabric_description %>
 
-      <%= form.label :purchased_from %><br>
+      <%= form.label :purchased_from %>
   	  <%= form.text_field :purchased_from %>
 
-      <%= form.label :meterage %><br>
+      <%= form.label :meterage %>
   	  <%= form.select :meterage, (0..500) %>
 
-    	<%= form.label :select_fibres %><br>
+    	<%= form.label :select_fibres %>
 		<%@fibres.each do |fibre|%>
 		    <%= form.label fibre %>
 			<%= form.check_box :fibre, {multiple: true}, fibre.to_s, nil %></br>
@@ -97,7 +97,7 @@
         <p>
         <%= form.select(:fibre, ['Silk', 'Linen', 'Cotton', 'Bamboo'], {:prompt => "Fibre Type"})%>
         <%= form.select(:colour, ['Blue', 'Yellow', 'Purple', 'Green'], {:prompt => "Select Colour"})%>
-        <%= form.select(:suitable_for, ['Pants', 'Skit', 'Shirt', 'Skirt'], {:prompt => "Suitable For"})%>
+        <%= form.select(:suitable_for, ['Pants', 'Skirt', 'Shirt', 'Activewear'], {:prompt => "Suitable For"})%>
         <%= form.submit "Filter Results" %> 
         </p>
     <% end %>   
@@ -144,13 +144,12 @@
 <div class="card-deck">
 
     <% @fabrics.each do |fabric| %>
-        <div class="col-sm-6 col-md-4 col-lg-3", id="fabric_<%=fabric.id%>">
+        <div class="col-sm-6 col-md-4 col-lg-3 cardmaster", id="fabric_<%=fabric.id%>">
 		    <div class="card" style="width: 18rem;">
 		    <img class="card-img-top" src="<%=fabric.image%>">
 		    <div class="card-body">
 		      <h5 class="card-title"><%= fabric.fabric_name%></h5>
 		      <p class="card-text"><%= fabric.fabric_description%></p>
-		      <p class="card-text"><%= fabric.printed%></p>
 
 
 <!--               Listing fibre types -->
