@@ -1,4 +1,11 @@
 
+<div class="jumbotron jumbotron-fluid" style="background-image: url(https://cdn.shopify.com/s/files/1/0379/0765/files/Liberty-Silks-Post-Sale_1440x640.jpg)">
+  <div class="container">
+    <h1 class="display-4" style="color: white">My Fabric Stash</h1>
+    <p class="lead" style="color: white">Welcome to MyFabricStash, an online inventory system to track your fabric collection!</p>
+  </div>
+</div>
+
 <div class="container">
 
     <% if @current_user %>
@@ -6,9 +13,7 @@
   </br><p><%= "Welcome, #{@current_user.username}" %></p>
     
     <% else %>
-
-  </br><p>Welcome to MyFabricStash, an online inventory system to track your fabric collection.</p>
-
+    
   <% end %>
 
 

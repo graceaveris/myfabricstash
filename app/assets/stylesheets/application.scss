@@ -15,8 +15,11 @@
 
 @import "bootstrap";
 
+
+
 body {
 	padding: 30px;
+	font-family: CenturyGothic;
 }
 
 
@@ -26,4 +29,8 @@ body {
 
 #button-group {
 	float: left;
+}
+
+.cardmaster {
+margin-bottom: 15px;
 }
