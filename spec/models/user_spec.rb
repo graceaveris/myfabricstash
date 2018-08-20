@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-#positive testing // PASS
+#negative testing // PASS
  describe "email validation" do
       it "should make sure a user has not already created an account" do
       @newuser = User.create(username: "Test", email: "grace@gmail.com", password: "hello")
