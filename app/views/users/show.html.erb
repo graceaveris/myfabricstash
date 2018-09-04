@@ -13,7 +13,7 @@
         
         <div class="col-sm-6 col-md-4 col-lg-3">
 		  <div class="card" style="width: 18rem;">
-		    <img class="card-img-top" src="<%=fabric.image%>">
+          <img class="card-img-top" src="<%= fabric.image%>">
 		    <div class="card-body">
 		      <h5 class="card-title"><%= fabric.fabric_name%></h5>
 		      <p class="card-text"><%= fabric.fabric_description%></p>
@@ -80,73 +80,58 @@
 <!-- Form to add fabric -->
 <%= form_with scope: :fabrics, url: new_fabrics_path, local: true do |form| %>
     <p>
-      <%= form.label :fabric_name %><br>
-  	  <%= form.text_field :fabric_name %>
-  	</p>
+      <%= form.label :fabric_name %>
+  	  <%= form.text_field :fabric_name %></br>
 
-    <p>
-      <%= form.label :fabric_description %><br>
-  	  <%= form.text_field :fabric_description %>
-  	</p>
+      <%= form.label :fabric_description %>
+  	  <%= form.text_field :fabric_description %></br>
 
-     <p>
-      <%= form.label :purchased_from %><br>
-  	  <%= form.text_field :purchased_from %>
-  	</p>
+      <%= form.label :purchased_from %>
+  	  <%= form.text_field :purchased_from %></br>
 
-     <p>
-      <%= form.label :meterage %><br>
-  	  <%= form.select :meterage, (0..500) %>
-  	</p>
+      <%= form.label :meterage %>
+  	  <%= form.select :meterage, (0..500) %></br></br>
 
-     <p>
-    	<%= form.label :select_fibres %><br>
+    	<%= form.label "SELECT FIBRES" %></br>
 		<%@fibres.each do |fibre|%>
 		    <%= form.label fibre %>
-			<%= form.check_box :fibre, {multiple: true}, fibre.to_s, nil %></br>
-			</p>		
-		<% end %>
-	</p>
+			<%= form.check_box :fibre, {multiple: true}, fibre.to_s, nil %>
+		<% end %></br></br>
 
-	<p>
-    	<%= form.label :main_fabric_colours %><br>
+    	<%= form.label "SELECT MAIN FABRIC COLOUR" %><br>
 		<%@colours.each do |colour|%>
 		    <%= form.label colour %>
-			<%= form.check_box :colour, {multiple: true}, colour.to_s, nil %></br>
-			</p>		
-		<% end %>
-	</p>
+			<%= form.check_box :colour, {multiple: true}, colour.to_s, nil %>		
+		<% end %></br></br>
 
-	<p>
-    	<%= form.label :suitable_for %><br>
+    	<%= form.label "SUITABLE FOR" %><br>
 		<%@suitable_for.each do |item|%>
 		    <%= form.label item %>
-			<%= form.check_box :suitable_for, {multiple: true}, item.to_s, nil %></br>
-			</p>		
-		<% end %>
-	</p>
+			<%= form.check_box :suitable_for, {multiple: true}, item.to_s, nil %>		
+		<% end %></br></br>
 
-    <p>
-        <%= form.label :printed? %><br>
-        <%= form.check_box :printed %><br>
-  	</p>
-	
-	<p>
-	  <%= form.submit "Add Fabric" %>
-	</p>
-    
-<% end %> 
+      <%= form.label "PRINTED?" %>
+      <%= form.check_box :printed %><br>
 
+
+<!-- IMAGE UPLOADER -->
+      <%= form.label "Upload an Image:"%></br>
+    <%= form.file_field :image %></br>
+<!-- IMAGE UPLOADER -->
+	</p>
 <!-- Form to add fabric -->
+  </div>
 
-      </div>
       <div class="modal-footer">
+      <!--   BUTTONS -->
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add Fabric</button>
+        <%= form.submit "Add Fabric", class: "btn btn-primary" %>
+        <!--   BUTTONS -->
+        <% end %>  
       </div>
     </div>
   </div>
-</div>
+</div></br></br>
 
 
 <!-- MODEL FOR UPLOAD FABRIC -->

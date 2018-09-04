@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+#for image upload
+gem 'carrierwave', '~> 1.0'
+#for testing
 gem 'rspec-rails'
 #for testing
 gem 'rspec-given'

@@ -6,7 +6,7 @@ class FabricsController < ApplicationController
   end
 
   def index
-    @fabrics = Fabric.where(["user_id = ?", current_user.id])
+    @fabrics = Fabric.where(["user_id = ?", current_user.id]).order(:created_at).reverse
     #arrays for add fabric modal
     @fibres = ["Silk", "Cotton", "Linen", "Wool", "Merino", "Modal", "Bamboo", "Cashmere", "Polyester", "Acetate", "Nylon", "Lurex"]
     @suitable_for = ["Pants", "Skirt", "Shirt", "Dress", "T-Shirt", "Shorts", "Activewear", "Sweater", "Jacket", "Coat", "Swimwear"]
@@ -52,7 +52,6 @@ class FabricsController < ApplicationController
   def create 
       @fabric = Fabric.new(fabric_params)
       @fabric.user_id = current_user.id
-      @fabric.image = "https://cdn.shopify.com/s/files/1/0379/0765/products/Linen_Gingham_Mustard_Rollshot_1024x1024.jpg?v=1533877671"
       
        if @fabric.save
       redirect_to root_path
@@ -81,6 +80,8 @@ end
 #PRIVATE METHOD TO VALIDATE THE NEW FABRIC FORM
   private
   def fabric_params
-    params.require(:fabrics).permit(:fabric_name, :fabric_description, :purchased_from, :meterage, :printed, {suitable_for: []}, {colour: []}, {fibre: []}) 
+    params.require(:fabrics).permit(:fabric_name, :fabric_description, :purchased_from, :meterage, :printed, :image, {suitable_for: []}, {colour: []}, {fibre: []}) 
   end
 end
+
+
