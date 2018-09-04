@@ -53,10 +53,16 @@
         <li class="nav-item">
           <%= link_to 'Sign Out', sign_out_path, class: 'nav-item nav-link active', method: :delete %>
         </li>
+      </ul>
 
-    
+<!--   SEARCH BAR -->
+      <form class="navbar-form navbar-right form-inline" role="search">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search your Stash" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search
+        </form>
+<!--   SEARCH BAR -->   
+
     <% else %>
-
 
         <li class="nav-item">
           <%= link_to 'Sign in', sign_in_path, class: 'nav-item nav-link active', method: :get %>
@@ -65,10 +71,10 @@
         <li class="nav-item">
           <%= link_to 'Sign Up', sign_up_path, class: 'nav-item nav-link active', method: :get %>
         </li>
+        </ul>
 
     <% end %>
 
-      </ul>
     </div>
   </nav>
 
