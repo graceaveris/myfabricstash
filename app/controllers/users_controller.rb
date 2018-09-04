@@ -20,9 +20,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @fabrics = Fabric.where(["user_id = ?", current_user.id]).order(:created_at).limit(4)
+    @fabrics = Fabric.where(["user_id = ?", current_user.id]).last(4).reverse
     @user = User.find(params[:id])
-   
 
     #as we are using a modal, the details for the form need to be passed in via this show method!
     @fibres = ["Silk", "Cotton", "Linen", "Wool", "Merino", "Modal", "Bamboo", "Cashmere", "Polyester", "Acetate", "Nylon", "Lurex"]

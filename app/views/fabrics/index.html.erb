@@ -57,18 +57,24 @@
 			<%= form.check_box :suitable_for, {multiple: true}, item.to_s, nil %>		
 		<% end %></br></br>
 
-        <%= form.label "PRINTED?" %>
-        <%= form.check_box :printed %><br>
+      <%= form.label "PRINTED?" %>
+      <%= form.check_box :printed %><br>
 
-	  <%= form.submit "Add Fabric" %>
+
+<!-- IMAGE UPLOADER -->
+      <%= form.label "Upload an Image:"%></br>
+    <%= form.file_field :image %></br>
+<!-- IMAGE UPLOADER -->
 	</p>
-
-<% end %>  
 <!-- Form to add fabric -->
+  </div>
 
-      </div>
       <div class="modal-footer">
+      <!--   BUTTONS -->
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= form.submit "Add Fabric", class: "btn btn-primary" %>
+        <!--   BUTTONS -->
+        <% end %>  
       </div>
     </div>
   </div>
@@ -153,7 +159,10 @@
     <% @fabrics.each do |fabric| %>
         <div class="col-sm-6 col-md-4 col-lg-3 cardmaster", id="fabric_<%=fabric.id%>">
 		    <div class="card" style="width: 18rem;">
-		    <img class="card-img-top" src="<%=fabric.image%>">
+        <img class="card-img-top" src="<%= fabric.image%>">
+
+        </small></p>
+
 		    <div class="card-body">
 		      <h5 class="card-title"><%= fabric.fabric_name%></h5>
 		      <p class="card-text"><%= fabric.fabric_description%></p>
@@ -165,8 +174,6 @@
 				      	<% fabric.fibre.each do |fibre| %>
 				      		<%=fibre %>
 				      	<%end%>
-			  </small></p>
-
 
 <!--               Listing colours -->
 		      <p class="card-text"><small class="text-muted">Colours: 

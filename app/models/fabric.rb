@@ -1,6 +1,8 @@
 class Fabric < ApplicationRecord
-    belongs_to :user
     validates :fabric_name, presence: true
+    belongs_to :user
+    mount_uploader :image, ImageUploader
+
     scope :print_scope, -> (print) { where("printed = ? ", true) } #NOT IN USE
     scope :plain_scope, -> (print) { where("printed = ? ", false) } #NOT IN USE
     scope :with_colour, -> (colour) { where(":colour = ANY(colour)", colour: colour ) }
