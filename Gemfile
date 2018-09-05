@@ -3,6 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+#for connectiing to cloud
+gem 'carrierwave-aws'
+#for image manipulation
+gem 'mini_magick'
+#for connecting to cloud
+gem 'aws-sdk-rails'
 #for image upload
 gem 'carrierwave', '~> 1.0'
 #for testing
