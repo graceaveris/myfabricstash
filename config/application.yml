@@ -12,3 +12,7 @@
 
 GOOGLE_APP_ID: '628269750051-h5tu94tr9lj4tlsv313bfone8prik6ek.apps.googleusercontent.com'  
 GOOGLE_APP_SECRET: 'ogTn3YsOzwsX_69GyESL3bjc'
+AWS_ACCESS_KEY_ID: 'AKIAIOULTZPIHZOBUMSA'
+AWS_SECRET_ACCESS_KEY: '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'
+S3_BUCKET_NAME: 'myfabricstash'
+AWS_REGION: 'ap-southeast-2'
